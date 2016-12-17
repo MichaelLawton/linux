@@ -75,6 +75,11 @@ static struct quirk_entry quirk_dell_xps13_9333 = {
 	.kbd_timeouts = { 0, 5, 15, 60, 5 * 60, 15 * 60, -1 },
 };
 
+static struct quirk_entry quirk_dell_studio_1558 = {
+	.needs_kbd_timeouts = 1,
+	.kbd_timeouts = { 0, 5, 15, 30, 60, 5 * 60, 15 * 60, -1 },
+};
+
 static struct platform_driver platform_driver = {
 	.driver = {
 		.name = "dell-laptop",
@@ -269,6 +274,15 @@ static const struct dmi_system_id dell_quirks[] __initconst = {
 			DMI_MATCH(DMI_PRODUCT_NAME, "XPS13 9333"),
 		},
 		.driver_data = &quirk_dell_xps13_9333,
+	},
+	{
+		.callback = dmi_matched,
+		.ident = "Dell Studio 1558",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+			DMI_MATCH(DMI_PRODUCT_NAME, "Studio 1558"),
+		},
+		.driver_data = &quirk_dell_studio_1558,
 	},
 	{ }
 };
