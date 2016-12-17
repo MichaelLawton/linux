@@ -1196,6 +1196,9 @@ static unsigned int kbd_get_max_level(void)
 static int kbd_get_level(struct kbd_state *state)
 {
 	int i;
+	
+	if (state->mode_bit == KBD_MODE_BIT_OFF)
+ +		return 0;
 
 	if (kbd_info.levels != 0)
 		return state->level;
