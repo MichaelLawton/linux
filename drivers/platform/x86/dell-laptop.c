@@ -1546,6 +1546,10 @@ static ssize_t kbd_led_timeout_store(struct device *dev,
 					value = quirks->kbd_timeouts[i];
 					break;
 				}
+				if (quirks->kbd_timeouts[i+1] == -1) {
+ +					value = quirks->kbd_timeouts[i];
+ +					break;
+ +				}
 			}
 		}
 
