@@ -1218,7 +1218,7 @@ static int kbd_set_level(struct kbd_state *state, u8 level)
 	if (kbd_info.levels != 0) {
 		if (level != 0)
 			kbd_previous_level = level;
-		if (state->level == level)
+		if (kbd_get_level(state) == level)
 			return 0;
 		state->level = level;
 		if (level != 0 && state->mode_bit == KBD_MODE_BIT_OFF)
